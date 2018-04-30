@@ -48,4 +48,15 @@ public class PerimeterRunnerTest {
 
     }
 
+    @Test
+    public void testPerimeterFour () {
+        PerimeterRunner runner = new PerimeterRunner();
+        Shape shape = new Shape();
+        shape.addPoint(new Point(-3,4));
+        shape.addPoint(new Point(-3,-4));
+        shape.addPoint(new Point(3,-4));
+
+        assertEquals(24.0, runner.getPerimeter(shape),0.5);
+
+    }
 }
