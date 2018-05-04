@@ -8,16 +8,15 @@ import edu.duke.Shape;
 import java.io.File;
 
 /**
- * @author alychak
- * @date 4/30/2018
- * @since 4/30/2018
- *
- * @url https://www.coursera.org/learn/java-programming/supplement/s3GE0/calculating-the-perimeter-of-a-shape
- *
+ * @author alychak <br>
+ * See https://www.coursera.org/learn/java-programming/supplement/s3GE0/calculating-the-perimeter-of-a-shape
  * */
-
-
 public class PerimeterAssignmentRunner {
+    /**
+     * Calculates the perimeter out of the given shape
+     * @param   s       Given shape
+     * @return  double  totalPerim
+     * */
     public double getPerimeter (Shape s) {
         // Start with totalPerim = 0
         double totalPerim = 0.0;
@@ -37,10 +36,10 @@ public class PerimeterAssignmentRunner {
     }
 
     /**
-     * Complete writing the method <code><getNumPoints/code> that has one parameter s
+     * Complete writing the method <code>getNumPoints</code> that has one parameter s
      *
-     * @param s is of type <code>Shape</code>.
-     * @return integer that is the number of points in Shape s.
+     * @param s  Given shape
+     * @return countPoints type
      * */
     public int getNumPoints (Shape s) {
         // Put code here
@@ -54,22 +53,22 @@ public class PerimeterAssignmentRunner {
 
 
     /**
-     * Complete writing the method getAverageLength that has one parameter s that is of type Shape.
-     * This method returns a number of type double that is the calculated average of all the sides’
-     * lengths in the Shape S.
+     * returns the calculated average of all the sides' lengths in the Shape s.
+     *
+     * @param   s   type: Shape
+     * @return  the average counted by dividing getPerimeter() and getNumPoints()
      * */
     public double getAverageLength(Shape s) {
-        // Put code here
         return getPerimeter(s) / getNumPoints(s);
     }
 
 
     /**
-     * Complete writing the method getLargestSide that has one parameter s that is of type Shape.
-     * This method returns a number of type double that is the longest side in the Shape S.
+     * Returns the longest side in the Shape s.
+     * @param    s  Given shape
+     * @return   double largestSide  Longest side of the shape
      * */
     public double getLargestSide(Shape s) {
-        // Put code here
         double largestSide = 0.0;
         Point lastPoint = s.getLastPoint();
         for (Point p: s.getPoints()) {
@@ -83,54 +82,60 @@ public class PerimeterAssignmentRunner {
     }
 
     /**
-     * Complete writing the method getLargestX that has one parameter s that is of type Shape.
-     * This method returns a number of type double that is the largest x value over all the points in the Shape s.
+     * Returns the largest X value over all the points in the Shape s.
+     * @param   s  Given shape
+     * @return  double largestX the largest <code>x</code> coordinate
      * */
-
     public double getLargestX(Shape s) {
-        // Put code here
-        return 0.0;
+        double largestX = 0.0;
+        for (Point p: s.getPoints()) {
+            if (p.getX() > largestX) {
+                largestX = p.getX();
+            }
+        }
+        return largestX;
     }
 
+    /**
+     * Calculates the largest perimeter out of several files
+     * @return double largestPerimeter
+     * */
     public double getLargestPerimeterMultipleFiles() {
-        // Put code here
-        return 0.0;
+        // Still needs to be done
+        double largestPerimeter = 0.0;
+        return largestPerimeter;
     }
 
+    /**
+     * Parses the given directory and gets the file with the largest perimeter
+     * @return the corresponding value
+     * */
     public String getFileWithLargestPerimeter() {
-        // Put code here
+        // Still needs to be done
         File temp = null;    // replace this code
         return temp.getName();
     }
 
     /**
-     * 1. Add code to call getNumPoints and to print the result.
-     * 2. Add code to call the method getAverageLength and to print out the result.
-     *    Note if you were to select the file example1.txt, then the average side length should be 4.0.
-     * 3. Add code to call the method getLargestSide and to print out the result.
-     *    Note if you were to select the file example1.txt, then the longest side should be 5.0.
-     * 4. Add code in the method testPerimeter to call the method getLargestX and to print out the result.
-     *    Note if you were to select the file example1.txt, then the longest side should be 4.0.
+     * This method is doing following:
+     * <ol>
+     *     <li>Runs <i><b>getNumPoints</b></i> method and to prints the result to console</li>
+     *     <li>Runs <i><b>getAverageLength</b></i> method and to prints the result to console</li>
+     *     <li>Runs <i><b>getLargestSide</b></i> method and to prints the result to console</li>
+     *     <li>Runs <i><b>getLargestX</b></i> method and to prints the result to console</li>
+     *     <li>Runs <i><b>getPerimeter</b></i> method and to prints the result to console</li>
+     * </ol>
      * */
     public void testPerimeter () {
+
         FileResource fr = new FileResource();
         Shape s = new Shape(fr);
 
-        // Using the getNumPoints method, return the amount of points you receive
-        int totalPointsNum = getNumPoints(s);
-        System.out.println("The amount of points is: " + totalPointsNum);
-
-        // The result of getAverageLength method
-        double averageLength = getAverageLength(s);
-        System.out.println("The avarage length is: " + averageLength);
-
-        // The result of getLargestSide method
+        System.out.println("The amount of points is: " + getNumPoints(s));
+        System.out.println("The avarage length is: " + getAverageLength(s));
         System.out.println("The largest side is: " + getLargestSide(s));
-
-
-        // The length is
-        double length = getPerimeter(s);
-        System.out.println("perimeter = " + length);
+        System.out.println("The largest X is: " + getLargestX(s));
+        System.out.println("perimeter = " + getPerimeter(s));
     }
 
     public void testPerimeterMultipleFiles() {
@@ -141,7 +146,9 @@ public class PerimeterAssignmentRunner {
         // Put code here
     }
 
-    // This method creates a triangle that you can use to test your other methods
+    /**
+     * Creates a triangle that can be used to test other methods
+     * */
     public void triangle(){
         Shape triangle = new Shape();
         triangle.addPoint(new Point(0,0));
@@ -154,7 +161,8 @@ public class PerimeterAssignmentRunner {
         System.out.println("perimeter = "+peri);
     }
 
-    // This method prints names of all files in a chosen folder that you can use to test your other methods
+    /** Prints names of all files in a chosen folder that can be used to test other methods */
+
     public void printFileNames() {
         DirectoryResource dr = new DirectoryResource();
         for (File f : dr.selectedFiles()) {
