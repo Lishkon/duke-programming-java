@@ -6,6 +6,10 @@ import edu.duke.Point;
 import edu.duke.Shape;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 /**
  * @author alychak <br>
@@ -18,20 +22,13 @@ public class PerimeterAssignmentRunner {
      * @return  double  totalPerim
      * */
     public double getPerimeter (Shape s) {
-        // Start with totalPerim = 0
         double totalPerim = 0.0;
-        // Start wth prevPt = the last point
         Point prevPt = s.getLastPoint();
-        // For each point currPt in the shape,
         for (Point currPt : s.getPoints()) {
-            // Find distance from prevPt point to currPt
             double currDist = prevPt.distance(currPt);
-            // Update totalPerim by currDist
             totalPerim = totalPerim + currDist;
-            // Update prevPt to be currPt
             prevPt = currPt;
         }
-        // totalPerim is the answer
         return totalPerim;
     }
 
@@ -42,7 +39,6 @@ public class PerimeterAssignmentRunner {
      * @return countPoints type
      * */
     public int getNumPoints (Shape s) {
-        // Put code here
         int countPoints = 0;
         for (Point p : s.getPoints()) {
             countPoints++;
@@ -102,8 +98,25 @@ public class PerimeterAssignmentRunner {
      * */
     public double getLargestPerimeterMultipleFiles() {
         // Still needs to be done
+
+        DirectoryResource dr = new DirectoryResource();
+        List<Double> perimetersStored = new ArrayList<Double>();
         double largestPerimeter = 0.0;
-        return largestPerimeter;
+
+        for (File f: dr.selectedFiles()) {
+            FileResource fr = new FileResource(f);
+            Shape s = new Shape(fr);
+            double currentPerimeter = getPerimeter(s);
+            perimetersStored.add(currentPerimeter);
+
+        }
+
+        double maxValue = perimetersStored
+                .stream()
+                .mapToDouble(v -> v)
+                .max().orElseThrow(NoSuchElementException::new);
+
+        return largestPerimeter = maxValue;
     }
 
     /**
@@ -172,6 +185,6 @@ public class PerimeterAssignmentRunner {
 
     public static void main (String[] args) {
         PerimeterAssignmentRunner pr = new PerimeterAssignmentRunner();
-        pr.testPerimeter();
+        System.out.println(pr.getLargestPerimeterMultipleFiles());
     }
 }
