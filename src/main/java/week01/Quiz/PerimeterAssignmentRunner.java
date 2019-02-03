@@ -6,10 +6,7 @@ import edu.duke.Point;
 import edu.duke.Shape;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Stream;
+import java.util.*;
 
 /**
  * @author alychak <br>
@@ -29,7 +26,7 @@ public class PerimeterAssignmentRunner {
             totalPerim = totalPerim + currDist;
             prevPt = currPt;
         }
-        return totalPerim;
+        return Math.floor(totalPerim);
     }
 
     /**
@@ -100,33 +97,39 @@ public class PerimeterAssignmentRunner {
         // Still needs to be done
 
         DirectoryResource dr = new DirectoryResource();
-        List<Double> perimetersStored = new ArrayList<Double>();
-        double largestPerimeter = 0.0;
+        List<Double> perimetersStored = new ArrayList<>();
 
         for (File f: dr.selectedFiles()) {
             FileResource fr = new FileResource(f);
             Shape s = new Shape(fr);
             double currentPerimeter = getPerimeter(s);
             perimetersStored.add(currentPerimeter);
-
         }
 
-        double maxValue = perimetersStored
+        return perimetersStored
                 .stream()
                 .mapToDouble(v -> v)
                 .max().orElseThrow(NoSuchElementException::new);
-
-        return largestPerimeter = maxValue;
     }
 
     /**
-     * Parses the given directory and gets the file with the largest perimeter
+     * This method should, like the getLargestPerimeterMultipleFiles method, create its own Directory Resource,
+     * except that this new method returns the File that has the largest such perimeter, so it has return type File.
      * @return the corresponding value
      * */
-    public String getFileWithLargestPerimeter() {
-        // Still needs to be done
-        File temp = null;    // replace this code
-        return temp.getName();
+    public File getFileWithLargestPerimeter() {
+        DirectoryResource dr = new DirectoryResource();
+        TreeMap<File, Double> perimeters = new TreeMap<>();
+
+        for (File f : dr.selectedFiles()) {
+            FileResource fr = new FileResource(f);
+            Shape shape = new Shape(fr);
+            perimeters.put(f, getPerimeter(shape));
+        }
+
+        return perimeters.lastKey();
+
+
     }
 
     /**
@@ -145,7 +148,7 @@ public class PerimeterAssignmentRunner {
         Shape s = new Shape(fr);
 
         System.out.println("The amount of points is: " + getNumPoints(s));
-        System.out.println("The avarage length is: " + getAverageLength(s));
+        System.out.println("The average length is: " + getAverageLength(s));
         System.out.println("The largest side is: " + getLargestSide(s));
         System.out.println("The largest X is: " + getLargestX(s));
         System.out.println("perimeter = " + getPerimeter(s));
@@ -185,6 +188,7 @@ public class PerimeterAssignmentRunner {
 
     public static void main (String[] args) {
         PerimeterAssignmentRunner pr = new PerimeterAssignmentRunner();
-        System.out.println(pr.getLargestPerimeterMultipleFiles());
+//        System.out.println(pr.getLargestPerimeterMultipleFiles());
+        System.out.println(pr.getFileWithLargestPerimeter());
     }
 }
