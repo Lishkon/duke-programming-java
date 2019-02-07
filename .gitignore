@@ -1,5 +1,5 @@
-.idea/
-.gradle/
+.gitignore
+.idea
+.gradle
 out/
 settings.graddle
-.gitignore

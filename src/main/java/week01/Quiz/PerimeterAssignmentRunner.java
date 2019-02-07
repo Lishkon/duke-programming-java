@@ -94,8 +94,6 @@ public class PerimeterAssignmentRunner {
      * @return double largestPerimeter
      * */
     public double getLargestPerimeterMultipleFiles() {
-        // Still needs to be done
-
         DirectoryResource dr = new DirectoryResource();
         List<Double> perimetersStored = new ArrayList<>();
 
@@ -135,11 +133,11 @@ public class PerimeterAssignmentRunner {
     /**
      * This method is doing following:
      * <ol>
-     *     <li>Runs <i><b>getNumPoints</b></i> method and to prints the result to console</li>
-     *     <li>Runs <i><b>getAverageLength</b></i> method and to prints the result to console</li>
-     *     <li>Runs <i><b>getLargestSide</b></i> method and to prints the result to console</li>
-     *     <li>Runs <i><b>getLargestX</b></i> method and to prints the result to console</li>
-     *     <li>Runs <i><b>getPerimeter</b></i> method and to prints the result to console</li>
+     *     <li>Runs <i><b>getNumPoints</b></i> method and prints the result to console</li>
+     *     <li>Runs <i><b>getAverageLength</b></i> method and prints the result to console</li>
+     *     <li>Runs <i><b>getLargestSide</b></i> method and prints the result to console</li>
+     *     <li>Runs <i><b>getLargestX</b></i> method and prints the result to console</li>
+     *     <li>Runs <i><b>getPerimeter</b></i> method and prints the result to console</li>
      * </ol>
      * */
     public void testPerimeter () {
@@ -155,11 +153,12 @@ public class PerimeterAssignmentRunner {
     }
 
     public void testPerimeterMultipleFiles() {
-        // Put code here
+        System.out.println(getLargestPerimeterMultipleFiles());
     }
 
     public void testFileWithLargestPerimeter() {
-        // Put code here
+        File f = getFileWithLargestPerimeter();
+        System.out.println(f.getName());
     }
 
     /**
@@ -188,7 +187,6 @@ public class PerimeterAssignmentRunner {
 
     public static void main (String[] args) {
         PerimeterAssignmentRunner pr = new PerimeterAssignmentRunner();
-//        System.out.println(pr.getLargestPerimeterMultipleFiles());
-        System.out.println(pr.getFileWithLargestPerimeter());
+        pr.testFileWithLargestPerimeter();
     }
 }
