@@ -129,5 +129,20 @@ public class PerimeterRunnerTest {
 
     //
 
-
+    @Test
+    public void getPerimeter_quizQuestion() {
+        PerimeterAssignmentRunner par = new PerimeterAssignmentRunner();
+        Shape shape = new Shape();
+        shape.addPoint(new Point(-3,9));
+        shape.addPoint(new Point(-3,9));
+        shape.addPoint(new Point(-12,4));
+        shape.addPoint(new Point(-6,-2));
+        shape.addPoint(new Point(-4,-6));
+        shape.addPoint(new Point(2,-8));
+        shape.addPoint(new Point(6,-5));
+        shape.addPoint(new Point(10,-3));
+        shape.addPoint(new Point(8,5));
+        shape.addPoint(new Point(4,8));
+        assertEquals(59.0, par.getPerimeter(shape),0.5);
+    }
 }
