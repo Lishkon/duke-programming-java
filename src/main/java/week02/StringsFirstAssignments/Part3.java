@@ -60,6 +60,16 @@ public class Part3 {
     String b2 = "coldingfarm";
     System.out.println("For following strings - a2: '" + a2 + "' and b2: '" + b2 + "'");
     System.out.println("the result of using the 'twoOccurances' is " + twoOccurrences(a2, b2) + "\n");
+
+    String lastPartPre = "an";
+    String lastPartPost = "banana";
+
+    // Uncomment this when need to test on different values:
+    // String lastPartPre = "zoo";
+    // String lastPartPost = "forest";
+
+    System.out.println("For following strings - lastPartPre: '" + lastPartPre + "' and lastPartPost: '" + lastPartPost + "'");
+    System.out.println("the result of using the 'lastPart' is " + lastPart(lastPartPre, lastPartPost) + "\n");
   }
 
   /**
