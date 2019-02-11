@@ -9,9 +9,9 @@ public class Part1 {
 
   String dna;
 
-  Part1(String dna) {
-    this.dna = dna;
-  }
+//  Part1(String dna) {
+//    this.dna = dna;
+//  }
   /**
    * @param dna Method does following:
    *            <p>
@@ -44,20 +44,30 @@ public class Part1 {
    * Testing method for findSimpleGene method
    */
   public void testSimpleGene() {
-    System.out.println("Gene is \'" + findSimpleGene(dna) + "\'");
+    String test = "ATGSHJATGCCCTAA";
+    String result = findSimpleGene(test);
+    String expResult = "ATGSHJATGCCCTAA";
+
+    if (test.equals(result)) {
+      System.out.println("You nailed it!");
+    } else {
+      System.out.println("mistake for input: " + test);
+      System.out.println("got: " + result);
+      System.out.println("not: " + expResult);
+    }
   }
 
   public static void main(String[] args) {
-    Part1 p1 = new Part1("CTAHSHJATGCCCAAAHHHCCHJJJCCCHHHAAASSSHHHKKKJJJTAA");
+    Part1 p1 = new Part1();
     p1.testSimpleGene();
 
-    Part1 p2 = new Part1("ATGTAA");
-    p2.testSimpleGene();
-
-    Part1 p3 = new Part1("ATGCCCHHHCCCGGGSSS");
-    p3.testSimpleGene();
-
-    Part1 p4 = new Part1("ATGCCCHHHGGGSTAA");
-    p4.testSimpleGene();
+//    Part1 p2 = new Part1("ATGTAA");
+//    p2.testSimpleGene();
+//
+//    Part1 p3 = new Part1("ATGCCCHHHCCCGGGSSS");
+//    p3.testSimpleGene();
+//
+//    Part1 p4 = new Part1("ATGCCCHHHGGGSTAA");
+//    p4.testSimpleGene();
   }
 }
